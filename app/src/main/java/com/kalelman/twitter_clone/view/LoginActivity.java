@@ -1,4 +1,4 @@
-package com.kalelman.twitter_clone;
+package com.kalelman.twitter_clone.view;
 
 import android.content.Intent;
 import android.support.design.widget.TextInputEditText;
@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import com.kalelman.twitter_clone.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,5 +32,4 @@ public class LoginActivity extends AppCompatActivity {
     public void goToRecoverPassword() {
         startActivity(new Intent(this, RecoverPasswordActivity.class));
     }
-
 }

@@ -1,8 +1,10 @@
-package com.kalelman.twitter_clone;
+package com.kalelman.twitter_clone.view;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.kalelman.twitter_clone.R;
 
 public class SplashActivity extends AppCompatActivity {
 

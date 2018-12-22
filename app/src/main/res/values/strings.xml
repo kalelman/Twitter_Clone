@@ -6,4 +6,5 @@
     <string name="text_login_title">Log in to Twitter.</string>
     <string name="text_recover_password_title">Find your Twitter account</string>
     <string name="text_login">Log in</string>
+    <string name="text_change_password">Change password</string>
 </resources>
