@@ -1,4 +1,4 @@
-package com.kalelman.twitter_clone.view;
+package com.kalelman.twitter_clone.view.activity;
 
 import android.os.Bundle;
 import android.widget.TextView;
