@@ -32,6 +32,8 @@ public class LoginActivity extends AppCompatActivity {
     TextView forgetPassword;
     @BindView(R.id.btn_login)
     Button btnLogin;
+    @BindView(R.id.btn_sign_up)
+    Button btnSignUp;
 
     private ProgressDialog progressDialog;
 
@@ -40,6 +42,12 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        setTextTranslate();
+    }
+
+    private void setTextTranslate() {
+        edtUsername.setText("user");
+        edtPassword.setText("password");
     }
 
     @OnClick(R.id.txv_forget_password)
@@ -71,6 +79,11 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    @OnClick(R.id.btn_sign_up)
+    public void listenerSignUp() {
+        startActivity(new Intent(this, CreateAccountActivity.class));
+    }
+
     private void executeServices(int typeServices) {
         //showProgress(); pendiente de implementar
         startActivity(new Intent(this, MainActivity.class));
@@ -83,6 +96,4 @@ public class LoginActivity extends AppCompatActivity {
             Log.e(getClass().getName().toString(), exception.getMessage());
         }
     }
-
-
 }

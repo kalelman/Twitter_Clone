@@ -10,4 +10,8 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="text_required_field">This field is required</string>
     <string name="text_progress_dialog_loading">Loading...</string>
+    <string name="text_name">Name</string>
+    <string name="text_email_address">Email address</string>
+    <string name="text_next">Next</string>
+    <string name="text_sign_up">Sign up</string>
 </resources>

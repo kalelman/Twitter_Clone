@@ -19,13 +19,6 @@ public class RecoverPasswordActivity extends ToolBar {
         ButterKnife.bind(this);
         setTitleActionBar("");
         setTextTranslate();
-
-
-        if (toolbar != null) {
-            setSupportActionBar(toolbar);
-            getSupportActionBar().setDisplayShowTitleEnabled(true);
-            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back_arrow);
-        }
     }
 
     private void setTextTranslate() {
