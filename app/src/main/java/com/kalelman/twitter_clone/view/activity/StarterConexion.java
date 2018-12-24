@@ -9,7 +9,6 @@ import com.parse.ParseUser;
 
 public class StarterConexion extends Application {
 
-
     @Override
     public void onCreate() {
         super.onCreate();

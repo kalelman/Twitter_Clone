@@ -10,8 +10,9 @@
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar_item"
-        tools:layout_editor_absoluteX="27dp"
-        tools:layout_editor_absoluteY="303dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txv_title_create_account"

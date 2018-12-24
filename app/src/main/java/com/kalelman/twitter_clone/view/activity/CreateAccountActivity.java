@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kalelman.twitter_clone.R;
@@ -40,6 +41,8 @@ public class CreateAccountActivity extends ToolBar {
     TextInputEditText edtPassword;
     @BindView(R.id.btn_sign_up_account)
     Button btnSignUpAc;
+    @BindView(R.id.txv_toolbar)
+    TextView txvToolBar;
     /*@BindView(R.id.imv_twitter_alert)
     ImageView imvTwitterAlert;
     @BindView(R.id.txv_title_alert_succes)
@@ -51,6 +54,8 @@ public class CreateAccountActivity extends ToolBar {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ButterKnife.bind(this);
+        setTextTranslate();
+        setTitleActionBar("");
     }
     @OnClick(R.id.btn_sign_up_account)
     public void signUp() {
@@ -129,5 +134,9 @@ public class CreateAccountActivity extends ToolBar {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+    private void setTextTranslate() {
+        txvToolBar.setText(R.string.text_sign_up);
     }
 }

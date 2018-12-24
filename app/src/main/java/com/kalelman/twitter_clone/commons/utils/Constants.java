@@ -9,6 +9,8 @@ public class Constants {
 
     public final static String LOGIN_TAG = "LoginActivity: ";
     public final static String SIGN_UP = "CreateAcoountActivity: ";
+    public final static String RECOVER_PASSWORD = "RecoverPasswordActivity";
+    public final static String RECOVER_PASSWORD_SUCCES = "Password Recover Success";
     public final static String SUCCES_MESSAGE = "Success!";
     public final static String FAILURE_MESSAGE = "Failure";
 }
