@@ -96,7 +96,6 @@ public class LoginActivity extends AppCompatActivity {
                 if (e == null){
                     Log.i(LOGIN_TAG, SUCCES_MESSAGE);
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                    //Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
                 else {
                     Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();

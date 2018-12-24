@@ -2,14 +2,13 @@ package com.kalelman.twitter_clone.view.activity;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kalelman.twitter_clone.R;
@@ -27,10 +26,18 @@ import static com.kalelman.twitter_clone.commons.utils.Constants.SUCCES_MESSAGE;
 
 public class CreateAccountActivity extends ToolBar {
 
-    @BindView(R.id.edt_user_name)
-    EditText edtUserName;
-    @BindView(R.id.edt_password)
-    EditText edtPassword;
+    @BindView(R.id.til_username)
+    TextInputLayout tilUsername;
+    @BindView(R.id.tiet_user_name)
+    TextInputEditText edtUserName;
+    @BindView(R.id.til_email)
+    TextInputLayout tilEmail;
+    @BindView(R.id.tiet_email)
+    TextInputEditText edtEamil;
+    @BindView(R.id.til_password_ca)
+    TextInputLayout tilPassword;
+    @BindView(R.id.tiet_password_ca)
+    TextInputEditText edtPassword;
     @BindView(R.id.btn_sign_up_account)
     Button btnSignUpAc;
     /*@BindView(R.id.imv_twitter_alert)
@@ -47,26 +54,40 @@ public class CreateAccountActivity extends ToolBar {
     }
     @OnClick(R.id.btn_sign_up_account)
     public void signUp() {
-        if (TextUtils.isEmpty(edtUserName.getText()) && TextUtils.isEmpty(edtUserName.getText())) {
-            edtUserName.setError(getResources().getText(R.string.text_required_field));
-            edtPassword.setError(getResources().getText(R.string.text_required_field));
+        if (TextUtils.isEmpty(edtUserName.getText()) && TextUtils.isEmpty(edtEamil.getText()) && TextUtils.isEmpty(edtPassword.getText().toString())) {
+            tilUsername.setError(getResources().getText(R.string.text_required_field));
+            tilEmail.setError(getResources().getText(R.string.text_required_field));
+            tilPassword.setError(getResources().getText(R.string.text_required_field));
         } else if (TextUtils.isEmpty(edtUserName.getText().toString())) {
-            edtUserName.setError(getResources().getText(R.string.text_required_field));
-            edtPassword.setError(null);
+            tilUsername.setError(getResources().getText(R.string.text_required_field));
+            tilEmail.setError(null);
+            tilPassword.setError(null);
+        } else if (TextUtils.isEmpty(edtEamil.getText().toString())) {
+            tilUsername.setError(null);
+            tilEmail.setError(getResources().getText(R.string.text_required_field));
+            tilPassword.setError(null);
+        } else if (!Tools.isValidEmail(edtEamil.getText().toString())) {
+            tilUsername.setError(null);
+            tilEmail.setError(getResources().getText(R.string.text_invalid_email));
+            tilPassword.setError(null);
         } else if (TextUtils.isEmpty(edtPassword.getText())) {
-            edtUserName.setError(getResources().getText(R.string.text_required_field));
-            edtPassword.setError(null);
+            tilUsername.setError(getResources().getText(R.string.text_required_field));
+            tilEmail.setError(getResources().getText(R.string.text_required_field));
+            tilPassword.setError(null);
         } else {
-            edtUserName.setError(null);
-            edtPassword.setError(null);
+            tilUsername.setError(null);
+            tilEmail.setError(null);
+            tilPassword.setError(null);
             createAccount();
         }
     }
 
     private void createAccount() {
-        ParseUser newUser = new ParseUser();
+        final ParseUser newUser = new ParseUser();
         newUser.setUsername(edtUserName.getText().toString());
         newUser.setPassword(edtPassword.getText().toString());
+        newUser.setEmail(edtEamil.getText().toString());
+
         newUser.signUpInBackground(new SignUpCallback() {
             @Override
             public void done(ParseException e) {
