@@ -66,6 +66,7 @@ public class RecoverPasswordActivity extends ToolBar {
 
     private void setTextTranslate() {
         txvToolBar.setText(R.string.text_change_password);
+        txvToolBar.setTextColor(getResources().getColor(R.color.colorWhite));
     }
 
     @Override

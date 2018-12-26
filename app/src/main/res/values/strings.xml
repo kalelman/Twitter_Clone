@@ -6,6 +6,7 @@
     <string name="text_login_title">Log in to Twitter.</string>
     <string name="text_recover_password_title">Find your Twitter account</string>
     <string name="text_login">Log in</string>
+    <string name="text_log_out">Log Out</string>
     <string name="text_change_password">Change password</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="text_required_field">This field is required</string>
@@ -18,4 +19,12 @@
     <string name="text_email">Email</string>
     <string name="text_invalid_email">Invalid email</string>
     <string name="text_enter_email">Enter your email</string>
+    <string name="text_tweet">Tweet</string>
+    <string name="text_feed">Your Feed</string>
+    <string name="text_openDrawer">Open</string>
+    <string name="text_closeDrawer">Close</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_cancel">CANCEL</string>
 </resources>

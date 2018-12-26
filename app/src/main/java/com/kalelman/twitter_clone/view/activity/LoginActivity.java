@@ -95,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
             public void done(ParseUser user, ParseException e) {
                 if (e == null){
                     Log.i(LOGIN_TAG, SUCCES_MESSAGE);
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    startActivity(new Intent(LoginActivity.this, ContainerMainActivity.class));
                 }
                 else {
                     Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -111,7 +111,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void executeServices(int typeServices) {
         //showProgress(); pendiente de implementar
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(this, ContainerMainActivity.class));
     }
 
     public void showProgress() {
