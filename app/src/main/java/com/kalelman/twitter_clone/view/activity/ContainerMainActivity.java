@@ -1,5 +1,6 @@
 package com.kalelman.twitter_clone.view.activity;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -20,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kalelman.twitter_clone.R;
+import com.kalelman.twitter_clone.view.fragment.ContentFragmentFeed;
 import com.kalelman.twitter_clone.view.fragment.ContentFragmentFollowers;
 import com.parse.ParseUser;
 
@@ -39,10 +41,6 @@ public class ContainerMainActivity extends ToolBar {
     DrawerLayout drawerLayout;
     @BindView(R.id.navigation_view)
     NavigationView navigationView;
-    @BindView(R.id.btn_alert_accept)
-    Button btnAccept;
-    @BindView(R.id.btn_alert_cancel)
-    Button btnCancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +54,6 @@ public class ContainerMainActivity extends ToolBar {
                 , R.string.text_openDrawer, R.string.text_closeDrawer) {
             @Override
             public void onDrawerOpened(View drawerView) {
-                //txvProfile.setText(getCurrentUser());
                 super.onDrawerOpened(drawerView);
             }
 
@@ -77,13 +74,14 @@ public class ContainerMainActivity extends ToolBar {
                 switch (menuItem.getItemId()) {
                     case R.id.followers:
                         showMainScreen();
-                        Toast.makeText(ContainerMainActivity.this, "presionado", Toast.LENGTH_SHORT).show();
-
                         return true;
+
+                    case R.id.user_feed:
+                        showFeedUser();
+                        return true;
+
                     case R.id.log_out:
                         userLogOut();
-
-
                         return true;
 
                     default:
@@ -98,7 +96,8 @@ public class ContainerMainActivity extends ToolBar {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.layout_custom_alert_logout, null);
-        ButterKnife.bind(this, dialogView);
+        final Button btnAccept = dialogView.findViewById(R.id.btn_alert_accept);
+        final Button btnCancel = dialogView.findViewById(R.id.btn_alert_cancel);
         builder.setView(dialogView);
         final AlertDialog dialog = builder.create();
         btnAccept.setOnClickListener(new View.OnClickListener() {
@@ -136,7 +135,8 @@ public class ContainerMainActivity extends ToolBar {
     }
 
     private void setText() {
-        txvToolBar.setText("Followers");
+        txvToolBar.setText(getResources().getText(R.string.text_followers));
+        //txvProfile.setText(ParseUser.getCurrentUser().getUsername());
     }
 
     private String getCurrentUser() {
@@ -155,8 +155,21 @@ public class ContainerMainActivity extends ToolBar {
         ft.commit();
     }
 
+    private void showFeedUser() {
+        ContentFragmentFeed fragmentFeed = new ContentFragmentFeed();
+        FragmentTransaction ff = getSupportFragmentManager().beginTransaction();
+        ff.replace(R.id.fragment, fragmentFeed);
+        ff.addToBackStack(null);
+        ff.commit();
+    }
+
     @Override
     public void onBackPressed() {
         userLogOut();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
     }
 }

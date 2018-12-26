@@ -23,6 +23,7 @@
     <string name="text_feed">Your Feed</string>
     <string name="text_openDrawer">Open</string>
     <string name="text_closeDrawer">Close</string>
+    <string name="text_followers">Followers</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

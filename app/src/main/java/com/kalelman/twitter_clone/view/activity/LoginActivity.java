@@ -95,6 +95,7 @@ public class LoginActivity extends AppCompatActivity {
             public void done(ParseUser user, ParseException e) {
                 if (e == null){
                     Log.i(LOGIN_TAG, SUCCES_MESSAGE);
+                    //showProgress();
                     startActivity(new Intent(LoginActivity.this, ContainerMainActivity.class));
                 }
                 else {
@@ -117,8 +118,23 @@ public class LoginActivity extends AppCompatActivity {
     public void showProgress() {
         try {
             progressDialog = ProgressDialog.show(this, "", getString(R.string.text_progress_dialog_loading), true, false);
+            new Thread(new Runnable() {
+                public void run() {
+                    try {
+                        Thread.sleep(5000);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    progressDialog.dismiss();
+                }
+            }).start();
         } catch (Exception exception) {
             Log.e(getClass().getName().toString(), exception.getMessage());
         }
+    }
+
+    public void hideProgress() {
+        if (progressDialog != null)
+            progressDialog.dismiss();
     }
 }
