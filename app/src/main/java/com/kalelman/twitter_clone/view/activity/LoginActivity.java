@@ -26,6 +26,11 @@ import butterknife.OnClick;
 import static com.kalelman.twitter_clone.commons.utils.Constants.LOGIN_TAG;
 import static com.kalelman.twitter_clone.commons.utils.Constants.SUCCES_MESSAGE;
 
+/**
+ * @author Erick Rojas Perez</br><br>erick_rojas_perez@hotmail.com</br>
+ * @date December/24/2018
+ * @description Activity for the Log In flow using Parse Server by Bitnami
+ */
 public class LoginActivity extends AppCompatActivity {
 
     @BindView(R.id.til_user)

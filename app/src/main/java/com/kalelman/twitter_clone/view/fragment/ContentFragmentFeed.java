@@ -1,13 +1,12 @@
 package com.kalelman.twitter_clone.view.fragment;
 
-import android.content.res.Resources;
-import android.os.AsyncTask;
+
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.res.ResourcesCompat;
+
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,15 +22,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.auth.oauth2.GoogleCredentials;
-import com.google.cloud.language.v1.AnalyzeSentimentRequest;
-import com.google.cloud.language.v1.AnalyzeSentimentResponse;
 import com.google.cloud.language.v1.Document;
 import com.google.cloud.language.v1.LanguageServiceClient;
 import com.google.cloud.language.v1.LanguageServiceSettings;
 import com.google.cloud.language.v1.Sentiment;
 import com.kalelman.twitter_clone.R;
 
-import com.kalelman.twitter_clone.view.activity.ContainerMainActivity;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -57,6 +53,11 @@ import static com.kalelman.twitter_clone.commons.utils.Constants.TWEET_FAILED;
 import static com.kalelman.twitter_clone.commons.utils.Constants.TWEET_SEND;
 import static com.kalelman.twitter_clone.commons.utils.Constants.USERNAME;
 
+/**
+ * @author Erick Rojas Perez</br><br>erick_rojas_perez@hotmail.com</br>
+ * @date December/28/2018</br>
+ * @decription Fragment for display the Feed of your Followers in your Account
+ */
 public class ContentFragmentFeed extends Fragment {
 
     @BindView(R.id.listView_feed)
@@ -108,6 +109,9 @@ public class ContentFragmentFeed extends Fragment {
             }
         });
 
+        /**
+         *  Listener for the row selected by the user and get the Tweet text
+         */
         listViewFeed.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -119,6 +123,9 @@ public class ContentFragmentFeed extends Fragment {
         return view;
     }
 
+    /**
+     * OnClick action int the Float Action Button for write your Tweet
+     */
     @OnClick(R.id.fab)
     public void writeTweet() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -159,6 +166,10 @@ public class ContentFragmentFeed extends Fragment {
         }); dialog.show();
     }
 
+    /**
+     * Initialize the Google API Google Cloud Natural Language
+     * using a LanguageClient
+     */
     private void prepareGoogleApi() {
         // create the language client
         try {
@@ -178,6 +189,10 @@ public class ContentFragmentFeed extends Fragment {
         }
     }
 
+    /**
+     * Request the Analyze Sentiment to the Google API and get the sentiment
+     * @param texts
+     */
     private void analyzeSentiment(String texts) {
         Document doc = Document.newBuilder().setContent(texts).setType(Document.Type.PLAIN_TEXT).build();
         // Detects the sentiment of the text
@@ -185,6 +200,10 @@ public class ContentFragmentFeed extends Fragment {
         showAlertSentiment(sentiment);
     }
 
+    /**
+     * Depending of the Score of the sentiment show an custom alert
+     * @param sentiment
+     */
     private void showAlertSentiment(Sentiment sentiment) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getLayoutInflater();
@@ -198,17 +217,17 @@ public class ContentFragmentFeed extends Fragment {
             //show Alert Sentiment Positive
             layout.setBackgroundColor(getResources().getColor(R.color.score_positive));
             imvSentiment.setImageResource(R.drawable.ic_emoji_positive);
-            txvSentiment.setText("Tweet Positive");
+            txvSentiment.setText(getResources().getText(R.string.text_sentiment_positive));
         } else if (sentiment.getScore() > -0.75) {
             //show Alert Sentiment Neutral
             layout.setBackgroundColor(getResources().getColor(R.color.score_neutral));
             imvSentiment.setImageResource(R.drawable.ic_emoji_neutral);
-            txvSentiment.setText("Tweet Neutral");
+            txvSentiment.setText(getResources().getText(R.string.text_sentiment_neutral));
         } else {
             //Show Alert Sentiment Negative
             layout.setBackgroundColor(getResources().getColor(R.color.score_negative));
             imvSentiment.setImageResource(R.drawable.ic_emoji_negative);
-            txvSentiment.setText("Tweet Negative");
+            txvSentiment.setText(getResources().getText(R.string.text_sentiment_negative));
         }
 
         builder.setView(dialogView);
@@ -222,6 +241,9 @@ public class ContentFragmentFeed extends Fragment {
         }); dialog.show();
     }
 
+    /**
+     * Shutdown the Google API
+     */
     @Override
     public void onDestroy() {
         super.onDestroy();

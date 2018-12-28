@@ -26,6 +26,11 @@ import butterknife.OnClick;
 import static com.kalelman.twitter_clone.commons.utils.Constants.SIGN_UP;
 import static com.kalelman.twitter_clone.commons.utils.Constants.SUCCES_MESSAGE;
 
+/**
+ * @author Erick Rojas Perez</br><br>erick_rojas_perez@hotmail.com</br>
+ * @date December/24/2018
+ * @description Class for complete the Sig Up flow in the Twitter App
+ */
 public class CreateAccountActivity extends ToolBar {
 
     @BindView(R.id.til_username)
@@ -52,6 +57,10 @@ public class CreateAccountActivity extends ToolBar {
         setTextTranslate();
         setTitleActionBar("");
     }
+
+    /**
+     * Validations for the Sign Up Process
+     */
     @OnClick(R.id.btn_sign_up_account)
     public void signUp() {
         if (TextUtils.isEmpty(edtUserName.getText()) && TextUtils.isEmpty(edtEamil.getText()) && TextUtils.isEmpty(edtPassword.getText().toString())) {
@@ -82,6 +91,9 @@ public class CreateAccountActivity extends ToolBar {
         }
     }
 
+    /**
+     * Method for Create An account by using Parse Server
+     */
     private void createAccount() {
         final ParseUser newUser = new ParseUser();
         newUser.setUsername(edtUserName.getText().toString());
@@ -103,6 +115,9 @@ public class CreateAccountActivity extends ToolBar {
         });
     }
 
+    /**
+     * Method for redirect the flow when you Sign Up Successfully
+     */
     private void redirectLogin() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();

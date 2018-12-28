@@ -45,7 +45,11 @@ import static com.kalelman.twitter_clone.commons.utils.Constants.TWEET;
 import static com.kalelman.twitter_clone.commons.utils.Constants.TWEET_FAILED;
 import static com.kalelman.twitter_clone.commons.utils.Constants.TWEET_SEND;
 import static com.kalelman.twitter_clone.commons.utils.Constants.USERNAME;
-
+/**
+ * @author Erick Rojas Perez</br><br>erick_rojas_perez@hotmail.com</br>
+ * @date December/24/2018
+ * @description Fragment that perform the flow for the follower of the user
+ */
 public class ContentFragmentFollowers extends Fragment {
 
     @BindView(R.id.listView_followers)

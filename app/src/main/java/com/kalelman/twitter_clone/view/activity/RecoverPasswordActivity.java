@@ -22,7 +22,11 @@ import static com.kalelman.twitter_clone.commons.utils.Constants.LOGIN_TAG;
 import static com.kalelman.twitter_clone.commons.utils.Constants.RECOVER_PASSWORD;
 import static com.kalelman.twitter_clone.commons.utils.Constants.RECOVER_PASSWORD_SUCCES;
 import static com.kalelman.twitter_clone.commons.utils.Constants.SUCCES_MESSAGE;
-
+/**
+ * @author Erick Rojas Perez</br><br>erick_rojas_perez@hotmail.com</br>
+ * @date December/24/2018
+ * @description Activity for the Recover Password flow using Parse Server by Bitnami
+ */
 public class RecoverPasswordActivity extends ToolBar {
 
     @BindView(R.id.txv_toolbar)

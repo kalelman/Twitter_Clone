@@ -44,6 +44,11 @@ import static com.kalelman.twitter_clone.commons.utils.Constants.TWEET_FAILED;
 import static com.kalelman.twitter_clone.commons.utils.Constants.TWEET_SEND;
 import static com.kalelman.twitter_clone.commons.utils.Constants.USERNAME;
 
+/**
+ * @author Erick Rojas Perez</br><br>erick_rojas_perez@hotmail.com</br>
+ * @date December/24/2018</br>
+ * @description Container for the Fragments and load every Fragment</br>
+ */
 public class ContainerMainActivity extends ToolBar {
 
     @BindView(R.id.toolbar)
@@ -104,6 +109,9 @@ public class ContainerMainActivity extends ToolBar {
         });
     }
 
+    /**
+     * Show an alter for ask the user if he want to Log Out
+     */
     private void userLogOut() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
@@ -129,6 +137,9 @@ public class ContainerMainActivity extends ToolBar {
         }); dialog.show();
     }
 
+    /**
+     * Show a Custom Alert for write your Tweet and publish
+     */
     private void sendTweet() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
@@ -180,6 +191,11 @@ public class ContainerMainActivity extends ToolBar {
         return true;
     }
 
+    /**
+     * Custo menu for selecting the options in Twitter Clone
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.tweet)
@@ -191,11 +207,18 @@ public class ContainerMainActivity extends ToolBar {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * get the layout
+     * @return layout
+     */
     @Override
     public int getLayoutResource() {
         return R.layout.activity_main_container;
     }
 
+    /**
+     * Custom method for set text in the app
+     */
     private void setText() {
         txvToolBar.setText(getResources().getText(R.string.text_followers));
         //txvProfile.setText(ParseUser.getCurrentUser().getUsername());
@@ -209,6 +232,9 @@ public class ContainerMainActivity extends ToolBar {
         return "User";
     }
 
+    /**
+     * Load the Main Screen when the user Log In successfully
+     */
     private void showMainScreen() {
         ContentFragmentFollowers fragmentFollowers = new ContentFragmentFollowers();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -217,7 +243,11 @@ public class ContainerMainActivity extends ToolBar {
         ft.commit();
     }
 
+    /**
+     * Method for load the Feed for the User
+     */
     private void showFeedUser() {
+        txvToolBar.setText(getResources().getText(R.string.text_feed));
         ContentFragmentFeed fragmentFeed = new ContentFragmentFeed();
         FragmentTransaction ff = getSupportFragmentManager().beginTransaction();
         ff.replace(R.id.fragment, fragmentFeed);
