@@ -35,8 +35,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.activity.CreateAccountActivity" />
-        <activity android:name=".view.activity.ContainerMainActivity"></activity>
+        <activity android:name=".view.activity.CreateAccountActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan"/>
+        <activity android:name=".view.activity.ContainerMainActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

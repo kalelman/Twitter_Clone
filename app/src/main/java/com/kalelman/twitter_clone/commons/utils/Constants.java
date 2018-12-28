@@ -20,10 +20,6 @@ public class Constants {
     public final static String IS_FOLLOWING = "isFollowing";
     public final static String CREATED_AT = "createdAt";
     public final static String CONTENT = "content";
-    public final static String ARG_SENTIMENT = "sentiment";
-    public final static String TAG = "ApiFragment";
-    public final static String FRAGMENT_API = "api";
-    public final static int LOADER_ACCESS_TOKEN = 1;
 
 
 }
