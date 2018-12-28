@@ -13,4 +13,17 @@ public class Constants {
     public final static String RECOVER_PASSWORD_SUCCES = "Password Recover Success";
     public final static String SUCCES_MESSAGE = "Success!";
     public final static String FAILURE_MESSAGE = "Failure";
+    public final static String TWEET = "Tweet";
+    public final static String TWEET_SEND = "Tweet sent!";
+    public final static String TWEET_FAILED = "Tweet Failed";
+    public final static String USERNAME = "username";
+    public final static String IS_FOLLOWING = "isFollowing";
+    public final static String CREATED_AT = "createdAt";
+    public final static String CONTENT = "content";
+    public final static String ARG_SENTIMENT = "sentiment";
+    public final static String TAG = "ApiFragment";
+    public final static String FRAGMENT_API = "api";
+    public final static int LOADER_ACCESS_TOKEN = 1;
+
+
 }

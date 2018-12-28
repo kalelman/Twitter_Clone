@@ -5,4 +5,9 @@
     <color name="colorAccent">#38A1F3</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorBlack">#FF000000</color>
+
+    <color name="score_positive">#f7f31d</color>
+    <color name="score_neutral">#757575</color>
+    <color name="score_negative">#114de7</color>
+    <color name="magnitude">#0288D1</color>
 </resources>

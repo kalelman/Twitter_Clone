@@ -3,8 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".view.activity.ContainerMainActivity">
-    <item android:id="@+id/action_settings"
+
+    <item android:id="@+id/tweet"
         android:orderInCategory="100"
         app:showAsAction="collapseActionView"
         android:title="@string/text_tweet" />
+
+    <item android:id="@+id/feed"
+        android:orderInCategory="100"
+        app:showAsAction="collapseActionView"
+        android:title="@string/text_feed" />
+
+    <item android:id="@+id/log_out_option"
+        android:orderInCategory="100"
+        app:showAsAction="collapseActionView"
+        android:title="@string/text_log_out" />
+
 </menu>

@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -43,12 +44,6 @@ public class CreateAccountActivity extends ToolBar {
     Button btnSignUpAc;
     @BindView(R.id.txv_toolbar)
     TextView txvToolBar;
-    /*@BindView(R.id.imv_twitter_alert)
-    ImageView imvTwitterAlert;
-    @BindView(R.id.txv_title_alert_succes)
-    TextView txvTitleAlertSucces;*/
-
-    private Button btn_alert_succes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,7 +107,7 @@ public class CreateAccountActivity extends ToolBar {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.layout_custom_alert_builder_signup, null);
-        btn_alert_succes = dialogView.findViewById(R.id.btn_alert_succes);
+        final Button btn_alert_succes = dialogView.findViewById(R.id.btn_alert_succes);
         builder.setView(dialogView);
         final AlertDialog dialog = builder.create();
 
@@ -129,6 +124,8 @@ public class CreateAccountActivity extends ToolBar {
     public int getLayoutResource() {
         return R.layout.activity_create_account;
     }
+
+
 
     @Override
     public boolean onSupportNavigateUp() {

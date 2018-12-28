@@ -1,14 +1,11 @@
 package com.kalelman.twitter_clone.view.activity;
 
-import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -17,17 +14,25 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kalelman.twitter_clone.R;
 import com.kalelman.twitter_clone.view.fragment.ContentFragmentFeed;
 import com.kalelman.twitter_clone.view.fragment.ContentFragmentFollowers;
+import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
+
+import static com.kalelman.twitter_clone.commons.utils.Constants.TWEET;
+import static com.kalelman.twitter_clone.commons.utils.Constants.TWEET_FAILED;
+import static com.kalelman.twitter_clone.commons.utils.Constants.TWEET_SEND;
+import static com.kalelman.twitter_clone.commons.utils.Constants.USERNAME;
 
 public class ContainerMainActivity extends ToolBar {
 
@@ -35,8 +40,6 @@ public class ContainerMainActivity extends ToolBar {
     Toolbar toolbar;
     @BindView(R.id.txv_toolbar)
     TextView txvToolBar;
-    /*@BindView(R.id.txv_profile)
-    TextView txvProfile;*/
     @BindView(R.id.drawer)
     DrawerLayout drawerLayout;
     @BindView(R.id.navigation_view)
@@ -89,7 +92,6 @@ public class ContainerMainActivity extends ToolBar {
                 }
             }
         });
-
     }
 
     private void userLogOut() {
@@ -117,6 +119,45 @@ public class ContainerMainActivity extends ToolBar {
         }); dialog.show();
     }
 
+    private void sendTweet() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.layout_custom_alert_teet, null);
+        final EditText edtSendTweet = dialogView.findViewById(R.id.edt_tweet);
+        final Button btnSendTweet = dialogView.findViewById(R.id.btn_send_tweet);
+        final Button btnCancelTweet = dialogView.findViewById(R.id.btn_cancel_tweet);
+        builder.setView(dialogView);
+        final AlertDialog dialog = builder.create();
+
+        btnSendTweet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ParseObject tweet = new ParseObject(TWEET);
+                tweet.put(TWEET, edtSendTweet.getText().toString());
+                tweet.put(USERNAME, ParseUser.getCurrentUser().getUsername());
+
+                tweet.saveInBackground(new SaveCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        if (e == null) {
+                            Toast.makeText(ContainerMainActivity.this, TWEET_SEND, Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
+                        } else {
+                            Toast.makeText(ContainerMainActivity.this, TWEET_FAILED,Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        });
+
+        btnCancelTweet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        }); dialog.show();
+    }
+
     /**
      * Inflate the menu of the ToolBar
      * @param menu
@@ -127,6 +168,17 @@ public class ContainerMainActivity extends ToolBar {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.tweet)
+            sendTweet();
+            else if (item.getItemId() == R.id.feed)
+            showFeedUser();
+            else if (item.getItemId() == R.id.log_out_option)
+            userLogOut();
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -172,4 +224,5 @@ public class ContainerMainActivity extends ToolBar {
     protected void onStart() {
         super.onStart();
     }
+
 }
